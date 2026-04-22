@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Source Serif 4', 'Noto Serif SC', serif;
+    background-color: #F5F0EB;
+    color: #5A5A5A;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  }
+
+  section {
+    scroll-margin-top: 88px;
+  }
+}
