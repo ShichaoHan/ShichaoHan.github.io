@@ -31,7 +31,7 @@ const experiences: ExperienceItem[] = [
     locationZh: '中国上海 / 深圳',
     dates: 'Jun. 2020 – Aug. 2020, Jun. 2021 – Aug. 2021, Jul. 2022 – Present',
     details: [
-      'Designed and implemented experimental designs and causal inference algorithms for both randomized and observational settings under marketplace and temporal interference, leveraging Scala (Spark), C++, and Python for large-scale deployment in WeChat\'s experimentation platform.',
+      "Designed and implemented experimental designs and causal inference algorithms for both randomized and observational settings under marketplace and temporal interference, leveraging Scala (Spark), C++, and Python for large-scale deployment in WeChat's experimentation platform.",
       'Led the development, productization, and internal adoption of the company-wide open-source large-scale causal inference toolkit; designed and delivered 10+ data science training programs.',
       'Engineered scalable end-to-end pipelines for matching-based causal inference and uplift modeling across three major business units.',
     ],
@@ -49,8 +49,12 @@ const experiences: ExperienceItem[] = [
     location: 'Berkeley, CA',
     locationZh: '伯克利，加州',
     dates: 'Aug. 2019 – May 2022',
-    details: [],
-    detailsZh: [],
+    details: [
+      'Taught weekly sections for 30 students; held office hours; wrote and graded exams; maintained class infrastructure.',
+    ],
+    detailsZh: [
+      '每周为30名学生授课；举办答疑时间；编写和批改考试；维护课程基础设施。',
+    ],
     courses: 'Probability for Data Science, Principles and Techniques of Data Science',
     coursesZh: '数据科学概率，数据科学原理与技术',
   },
@@ -88,138 +92,108 @@ const experiences: ExperienceItem[] = [
   },
 ];
 
-function ExperienceCard({ item, language }: { item: ExperienceItem; language: string }) {
+function ExperienceRow({ item, language }: { item: ExperienceItem; language: string }) {
   const t = (en: string, zh: string) => (language === 'en' ? en : zh);
+  const details = language === 'en' ? item.details : item.detailsZh;
 
   return (
-    <div
-      className="p-6 transition-all duration-300"
-      style={{
-        backgroundColor: '#FFFFFF',
-        border: '1px solid #E5E5E5',
-        borderRadius: '4px',
-        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-2px)';
-        e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 2px 12px rgba(0, 0, 0, 0.06)';
-      }}
-    >
-      <div className="flex flex-col md:flex-row md:justify-between gap-2">
-        {/* Left content */}
-        <div className="md:w-[75%]">
-          <h3
+    <div style={{ marginBottom: '24px' }}>
+      {/* Role + dates on same line */}
+      <div className="flex flex-col md:flex-row md:justify-between md:items-baseline gap-1">
+        <p style={{ margin: 0 }}>
+          <span
             style={{
               fontFamily: "'Cormorant Garamond', 'Noto Serif SC', serif",
-              fontSize: '20px',
+              fontSize: '16px',
               fontWeight: 600,
               color: '#2C3E50',
             }}
           >
             {t(item.role, item.roleZh)}
-          </h3>
-          <p
-            className="mt-1"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: '18px',
-              fontWeight: 500,
-              color: '#3B7A5B',
-            }}
-          >
-            {t(item.company, item.companyZh)}
-          </p>
+          </span>
+        </p>
+        <span
+          style={{
+            fontFamily: "'Source Serif 4', serif",
+            fontSize: '14px',
+            color: '#9B9B9B',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {item.dates}
+        </span>
+      </div>
 
-          {item.supervisor && (
-            <p
-              className="mt-1"
-              style={{
-                fontFamily: "'Source Serif 4', serif",
-                fontSize: '14px',
-                color: '#5A5A5A',
-              }}
-            >
-              {t(item.supervisor, item.supervisorZh || '')}
-            </p>
-          )}
+      {/* Company + location */}
+      <p
+        style={{
+          margin: '2px 0 0',
+          fontFamily: "'Source Serif 4', 'Noto Serif SC', serif",
+          fontSize: '14px',
+          color: '#3B7A5B',
+          lineHeight: 1.5,
+        }}
+      >
+        {t(item.company, item.companyZh)}
+        {item.location && (
+          <span style={{ color: '#9B9B9B' }}>
+            {' · '}
+            {t(item.location, item.locationZh)}
+          </span>
+        )}
+      </p>
 
-          {item.courses && (
-            <p
-              className="mt-2"
-              style={{
-                fontFamily: "'Source Serif 4', 'Noto Serif SC', serif",
-                fontSize: '14px',
-                color: '#5A5A5A',
-              }}
-            >
-              {t(item.courses, item.coursesZh || '')}
-            </p>
-          )}
+      {/* Supervisor */}
+      {item.supervisor && (
+        <p
+          style={{
+            margin: '2px 0 0',
+            fontFamily: "'Source Serif 4', serif",
+            fontSize: '14px',
+            color: '#9B9B9B',
+            lineHeight: 1.5,
+          }}
+        >
+          {t(item.supervisor, item.supervisorZh || '')}
+        </p>
+      )}
 
-          {item.details.length > 0 && (
-            <ul className="mt-3 space-y-2">
-              {(language === 'en' ? item.details : item.detailsZh).map((detail, i) => (
-                <li
-                  key={i}
-                  className="flex gap-2"
-                  style={{
-                    fontFamily: "'Source Serif 4', 'Noto Serif SC', serif",
-                    fontSize: '14px',
-                    color: '#5A5A5A',
-                    lineHeight: 1.6,
-                  }}
-                >
-                  <span style={{ color: '#3B7A5B', flexShrink: 0 }}>·</span>
-                  <span>{detail}</span>
-                </li>
-              ))}
-            </ul>
-          )}
+      {/* Courses */}
+      {item.courses && (
+        <p
+          style={{
+            margin: '2px 0 0',
+            fontFamily: "'Source Serif 4', 'Noto Serif SC', serif",
+            fontSize: '14px',
+            color: '#9B9B9B',
+            lineHeight: 1.5,
+          }}
+        >
+          {t(item.courses, item.coursesZh || '')}
+        </p>
+      )}
 
-          {item.details.length === 0 && !item.courses && item.role.includes('Teaching') && (
-            <p
-              className="mt-2"
+      {/* Bullet details */}
+      {details.length > 0 && (
+        <ul style={{ margin: '6px 0 0', padding: 0, listStyle: 'none' }}>
+          {details.map((detail, i) => (
+            <li
+              key={i}
+              className="flex gap-2"
               style={{
                 fontFamily: "'Source Serif 4', 'Noto Serif SC', serif",
                 fontSize: '14px',
                 color: '#5A5A5A',
                 lineHeight: 1.6,
+                marginTop: i > 0 ? '4px' : 0,
               }}
             >
-              {language === 'en'
-                ? 'Taught weekly sections for 30 students; held office hours; wrote and graded exams; maintained class infrastructure.'
-                : '每周为30名学生授课；举办答疑时间；编写和批改考试；维护课程基础设施。'}
-            </p>
-          )}
-        </div>
-
-        {/* Right - dates */}
-        <div className="md:w-[25%] md:text-right shrink-0">
-          <p
-            style={{
-              fontFamily: "'Source Serif 4', serif",
-              fontSize: '14px',
-              color: '#9B9B9B',
-            }}
-          >
-            {t(item.location, item.locationZh)}
-          </p>
-          <p
-            className="mt-1"
-            style={{
-              fontFamily: "'Source Serif 4', serif",
-              fontSize: '14px',
-              color: '#9B9B9B',
-            }}
-          >
-            {item.dates}
-          </p>
-        </div>
-      </div>
+              <span style={{ color: '#3B7A5B', flexShrink: 0 }}>·</span>
+              <span>{detail}</span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
@@ -228,7 +202,7 @@ export default function ExperienceSection() {
   const { language, t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -247,15 +221,13 @@ export default function ExperienceSection() {
       { opacity: 0, y: 25 },
       { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }
     ).fromTo(
-      cardsRef.current?.children || [],
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.15 },
+      listRef.current?.children || [],
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.12 },
       '-=0.3'
     );
 
-    return () => {
-      tl.kill();
-    };
+    return () => { tl.kill(); };
   }, []);
 
   return (
@@ -265,7 +237,7 @@ export default function ExperienceSection() {
       className="px-6 md:px-8"
       style={{ paddingTop: '64px', paddingBottom: '64px' }}
     >
-      <div className="max-w-[1100px] mx-auto">
+      <div className="max-w-[800px] mx-auto">
         <h2
           ref={headingRef}
           style={{
@@ -279,9 +251,9 @@ export default function ExperienceSection() {
           {t('Experience', '工作经历')}
         </h2>
 
-        <div ref={cardsRef} className="flex flex-col gap-5">
+        <div ref={listRef}>
           {experiences.map((item, i) => (
-            <ExperienceCard key={i} item={item} language={language} />
+            <ExperienceRow key={i} item={item} language={language} />
           ))}
         </div>
       </div>
