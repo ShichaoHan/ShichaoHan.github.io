@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -151,11 +151,6 @@ export default function HeroSection() {
           <span className="flex items-center gap-1.5">
             <Mail size={14} color="#9B9B9B" />
             <span style={{ fontFamily: "'Source Serif 4', serif" }}>hansc5577@gmail.com</span>
-          </span>
-          <span style={{ color: '#9B9B9B' }}>·</span>
-          <span className="flex items-center gap-1.5">
-            <Phone size={14} color="#9B9B9B" />
-            <span style={{ fontFamily: "'Source Serif 4', serif" }}>(+86) 15025399090</span>
           </span>
           <span style={{ color: '#9B9B9B' }}>·</span>
           <span className="flex items-center gap-1.5">
