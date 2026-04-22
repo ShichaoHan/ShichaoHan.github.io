@@ -23,6 +23,7 @@ interface WorkingPaper {
   statusType: 'in-prep' | 'under-review';
   note: string;
   noteZh: string;
+  link?: string;
 }
 
 const publishedPapers: Paper[] = [
@@ -74,6 +75,7 @@ const workingPapers: WorkingPaper[] = [
     statusType: 'in-prep',
     note: 'We explore how large language models can help uncover group-specific causal mechanisms from historical A/B tests and leverage them to improve downstream causal inference.',
     noteZh: '我们探索大语言模型如何从历史A/B测试中揭示群体特定的因果机制，并利用它们改进下游因果推断。',
+    link: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6286418',
   },
   {
     title: 'Estimating Treatment Effects under Recommender Interference: A Structured Neural Networks Approach',
@@ -85,6 +87,7 @@ const workingPapers: WorkingPaper[] = [
     statusType: 'under-review',
     note: "Under major revision at Management Science. Extended abstract appeared in ACM EC'24.",
     noteZh: '在Management Science大幅修改中。扩展摘要发表于ACM EC\'24。',
+    link: 'https://thearf-org-unified-admin.s3.amazonaws.com/MSI/2025/MSI_Report_25-141.pdf',
   },
   {
     title: 'Enhancing External Validity in Experiments with Ongoing Sampling',
@@ -205,6 +208,26 @@ function WorkingPaperRow({ paper, language }: { paper: WorkingPaper; language: s
         >
           {t(paper.status, paper.statusZh)}
         </span>
+        {paper.link && (
+          <span
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              fontSize: '14px',
+              marginLeft: '8px',
+            }}
+          >
+            [
+            <a
+              href={paper.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#3B7A5B', textDecoration: 'underline' }}
+            >
+              {t('paper', '链接')}
+            </a>
+            ]
+          </span>
+        )}
       </p>
       <p
         style={{

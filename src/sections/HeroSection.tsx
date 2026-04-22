@@ -114,7 +114,7 @@ export default function HeroSection() {
               }}
             >
               {t(
-                'Senior Research Data Scientist, Tencent WeChat Team',
+                'Senior Research Data Scientist, Tencent Weixin Team',
                 '高级研究数据科学家，腾讯微信团队'
               )}
             </p>
@@ -149,7 +149,7 @@ export default function HeroSection() {
               }}
             >
               {t(
-                "I am a Senior Research Data Scientist at Tencent's WeChat Team, developing and applying methods from causal inference, experimental design, econometrics, statistics, and machine learning. My research focuses on causal evaluation of marketplace interventions, scalable experimentation infrastructure, and observational study methodologies for large-scale platforms.",
+                "I am a Senior Research Data Scientist at Tencent's Weixin Team, developing and applying methods from causal inference, experimental design, econometrics, statistics, and machine learning. My research focuses on causal evaluation of marketplace interventions, scalable experimentation infrastructure, and observational study methodologies for large-scale platforms.",
                 '我是腾讯微信团队的高级研究数据科学家，致力于开发和应用因果推断、实验设计、计量经济学、统计学和机器学习等领域的方法。我的研究聚焦于平台干预的因果评估、可扩展的实验基础设施，以及面向大规模平台的观察性研究方法。'
               )}
             </p>

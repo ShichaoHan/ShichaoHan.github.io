@@ -25,13 +25,13 @@ const experiences: ExperienceItem[] = [
   {
     role: 'Senior Research Data Scientist',
     roleZh: '高级研究数据科学家',
-    company: 'Tencent, WeChat Team',
+    company: 'Tencent, Weixin Team',
     companyZh: '腾讯，微信团队',
     location: 'Shanghai / Shenzhen, China',
     locationZh: '中国上海 / 深圳',
     dates: 'Jun. 2020 – Aug. 2020, Jun. 2021 – Aug. 2021, Jul. 2022 – Present',
     details: [
-      "Designed and implemented experimental designs and causal inference algorithms for both randomized and observational settings under marketplace and temporal interference, leveraging Scala (Spark), C++, and Python for large-scale deployment in WeChat's experimentation platform.",
+      "Designed and implemented experimental designs and causal inference algorithms for both randomized and observational settings under marketplace and temporal interference, leveraging Scala (Spark), C++, and Python for large-scale deployment in Weixin's experimentation platform.",
       'Led the development, productization, and internal adoption of the company-wide open-source large-scale causal inference toolkit; designed and delivered 10+ data science training programs.',
       'Engineered scalable end-to-end pipelines for matching-based causal inference and uplift modeling across three major business units.',
     ],
