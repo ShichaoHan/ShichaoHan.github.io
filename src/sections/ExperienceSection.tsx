@@ -25,8 +25,8 @@ const experiences: ExperienceItem[] = [
   {
     role: 'Senior Research Data Scientist',
     roleZh: '高级研究数据科学家',
-    company: 'Tencent, Weixin Team',
-    companyZh: '腾讯，微信团队',
+    company: 'Tencent, Weixin Experimentation Platform',
+    companyZh: '腾讯，微信实验平台',
     location: 'Shanghai / Shenzhen, China',
     locationZh: '中国上海 / 深圳',
     dates: 'Jun. 2020 – Aug. 2020, Jun. 2021 – Aug. 2021, Jul. 2022 – Present',
