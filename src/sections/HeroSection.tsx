@@ -122,7 +122,7 @@ export default function HeroSection() {
             lineHeight: 1.2,
           }}
         >
-          {t('Shichao Han', '韩世超')}
+          {t('Shichao Han', '韩士超')}
         </h1>
 
         {/* Affiliation */}
