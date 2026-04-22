@@ -67,7 +67,7 @@ export default function HeroSection() {
       className="px-6 md:px-8"
       style={{ paddingTop: '120px', paddingBottom: '64px' }}
     >
-      <div className="max-w-[900px] mx-auto">
+      <div className="max-w-[800px] mx-auto">
         {/* Two-column: photo left, text right */}
         <div className="flex flex-col md:flex-row gap-10 md:gap-14 items-start">
           {/* Portrait */}

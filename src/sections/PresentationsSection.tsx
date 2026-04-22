@@ -91,7 +91,7 @@ export default function PresentationsSection() {
       className="px-6 md:px-8"
       style={{ paddingTop: '64px', paddingBottom: '64px' }}
     >
-      <div className="max-w-[1100px] mx-auto">
+      <div className="max-w-[800px] mx-auto">
         <h2
           ref={headingRef}
           style={{
