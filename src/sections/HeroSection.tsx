@@ -7,7 +7,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const portraitRef = useRef<HTMLDivElement>(null);
   const textColRef = useRef<HTMLDivElement>(null);
@@ -114,8 +114,8 @@ export default function HeroSection() {
               }}
             >
               {t(
-                'Senior Research Data Scientist, Tencent Weixin Experimentation Platform',
-                '高级研究数据科学家，腾讯微信实验平台'
+                'Senior Data Scientist, Tencent Weixin Experimentation Platform',
+                '高级数据科学家，腾讯微信实验平台'
               )}
             </p>
 
@@ -148,9 +148,32 @@ export default function HeroSection() {
                 marginBottom: 0,
               }}
             >
-              {t(
-                "I am a Senior Research Data Scientist at Tencent's Weixin Experimentation Platform, developing and applying methods from causal inference, experimental design, econometrics, statistics, and machine learning. I serve as the product manager of Fast-Causal-Inference, an open-source large-scale causal inference toolkit used internally across Weixin and released to the open-source community on GitHub. My research focuses on causal evaluation of marketplace interventions, scalable experimentation infrastructure, and observational study methodologies for large-scale platforms.",
-                '我是腾讯微信实验平台的高级研究数据科学家，致力于开发和应用因果推断、实验设计、计量经济学、统计学和机器学习等领域的方法。我担任 Fast-Causal-Inference 的产品负责人——这是一个大规模开源因果推断工具包，在微信内部广泛使用，并已在 GitHub 上向开源社区发布。我的研究聚焦于平台干预的因果评估、可扩展的实验基础设施，以及面向大规模平台的观察性研究方法。'
+              {language === 'en' ? (
+                <>
+                  I am a Senior Data Scientist at Tencent&apos;s Weixin Experimentation Platform, developing and applying methods from causal inference, experimental design, econometrics, statistics, and machine learning. I serve as the product manager of Fast-Causal-Inference, an open-source large-scale causal inference toolkit used internally across Tencent and released to the{' '}
+                  <a
+                    href="https://github.com/Tencent/fast-causal-inference"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: '#3B7A5B', textDecoration: 'underline' }}
+                  >
+                    open-source community
+                  </a>
+                  . My research focuses on causal evaluation of marketplace interventions, scalable experimentation infrastructure, and observational study methodologies for large-scale platforms.
+                </>
+              ) : (
+                <>
+                  我是腾讯微信实验平台的高级数据科学家，致力于开发和应用因果推断、实验设计、计量经济学、统计学和机器学习等领域的方法。我担任 Fast-Causal-Inference 的产品负责人——这是一个大规模开源因果推断工具包，在腾讯内部广泛使用，并已向{' '}
+                  <a
+                    href="https://github.com/Tencent/fast-causal-inference"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: '#3B7A5B', textDecoration: 'underline' }}
+                  >
+                    开源社区
+                  </a>
+                  发布。我的研究聚焦于平台干预的因果评估、可扩展的实验基础设施，以及面向大规模平台的观察性研究方法。
+                </>
               )}
             </p>
           </div>

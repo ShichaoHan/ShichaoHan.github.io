@@ -94,11 +94,12 @@ const workingPapers: WorkingPaper[] = [
     titleZh: '通过持续采样增强实验的外部效度',
     authors: 'Chen Wang, Shichao Han, Shan Huang',
     year: '2024',
-    status: 'In Preparation',
-    statusZh: '准备中',
-    statusType: 'in-prep',
+    status: 'Under Review',
+    statusZh: '审稿中',
+    statusType: 'under-review',
     note: "Extended abstract appeared in ACM EC'24.",
     noteZh: '扩展摘要发表于ACM EC\'24。',
+    link: 'https://arxiv.org/pdf/2502.18253',
   },
 ];
 
