@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLanguage } from '@/hooks/useLanguage';
-import { ExternalLink } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -84,7 +83,7 @@ const workingPapers: WorkingPaper[] = [
     status: 'Under Review',
     statusZh: '审稿中',
     statusType: 'under-review',
-    note: 'Under major revision at Management Science. Extended abstract appeared in ACM EC\'24.',
+    note: "Under major revision at Management Science. Extended abstract appeared in ACM EC'24.",
     noteZh: '在Management Science大幅修改中。扩展摘要发表于ACM EC\'24。',
   },
   {
@@ -95,190 +94,132 @@ const workingPapers: WorkingPaper[] = [
     status: 'In Preparation',
     statusZh: '准备中',
     statusType: 'in-prep',
-    note: 'Extended abstract appeared in ACM EC\'24.',
+    note: "Extended abstract appeared in ACM EC'24.",
     noteZh: '扩展摘要发表于ACM EC\'24。',
   },
 ];
 
-function PaperCard({ paper, index, language }: { paper: Paper; index: number; language: string }) {
+function AuthorList({ authors }: { authors: string }) {
+  const parts = authors.split('Shichao Han');
+  if (parts.length === 1) return <>{authors}</>;
+  return (
+    <>
+      {parts[0]}
+      <strong style={{ fontWeight: 700, color: '#2C3E50' }}>Shichao Han</strong>
+      {parts[1]}
+    </>
+  );
+}
+
+function PaperRow({ paper, language }: { paper: Paper; language: string }) {
   const t = (en: string, zh: string) => (language === 'en' ? en : zh);
-  const authorParts = paper.authors.split('Shichao Han');
 
   return (
-    <div
-      className="paper-card p-5 transition-all duration-300"
-      style={{
-        backgroundColor: '#FFFFFF',
-        border: '1px solid #E5E5E5',
-        borderRadius: '4px',
-        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-2px)';
-        e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 2px 12px rgba(0, 0, 0, 0.06)';
-      }}
-    >
-      <span
-        style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: '14px',
-          fontWeight: 600,
-          color: '#3B7A5B',
-        }}
-      >
-        [{index + 1}]
-      </span>
-      <h3
-        className="mt-2"
-        style={{
-          fontFamily: "'Cormorant Garamond', 'Noto Serif SC', serif",
-          fontSize: '18px',
-          fontWeight: 600,
-          color: '#2C3E50',
-          lineHeight: 1.4,
-        }}
-      >
-        {t(paper.title, paper.titleZh)}
-      </h3>
+    <div style={{ marginBottom: '20px' }}>
+      <p style={{ margin: 0, lineHeight: 1.6 }}>
+        <span
+          style={{
+            fontFamily: "'Cormorant Garamond', 'Noto Serif SC', serif",
+            fontSize: '16px',
+            fontWeight: 600,
+            color: '#2C3E50',
+          }}
+        >
+          {t(paper.title, paper.titleZh)}
+        </span>
+        {paper.link && (
+          <span
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              fontSize: '14px',
+              marginLeft: '8px',
+            }}
+          >
+            [
+            <a
+              href={paper.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#3B7A5B', textDecoration: 'underline' }}
+            >
+              {t('paper', '链接')}
+            </a>
+            ]
+          </span>
+        )}
+      </p>
       <p
-        className="mt-2"
         style={{
+          margin: '2px 0 0',
           fontFamily: "'Source Serif 4', 'Noto Serif SC', serif",
           fontSize: '14px',
           color: '#5A5A5A',
           lineHeight: 1.5,
         }}
       >
-        {authorParts.length > 1 ? (
-          <>
-            {authorParts[0]}
-            <strong style={{ fontWeight: 600 }}>Shichao Han</strong>
-            {authorParts[1]}
-          </>
-        ) : (
-          paper.authors
-        )}
+        <AuthorList authors={paper.authors} />
       </p>
       <p
-        className="mt-1.5"
         style={{
+          margin: '1px 0 0',
           fontFamily: "'Source Serif 4', serif",
           fontSize: '14px',
           color: '#9B9B9B',
+          lineHeight: 1.5,
         }}
       >
         {paper.venue}
       </p>
-      {paper.link && (
-        <div className="mt-3">
-          <a
-            href={paper.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 transition-opacity duration-200 hover:opacity-70"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: '14px',
-              fontWeight: 500,
-              color: '#3B7A5B',
-              textDecoration: 'underline',
-            }}
-          >
-            <ExternalLink size={12} />
-            {t('Access here', '点击访问')}
-          </a>
-        </div>
-      )}
     </div>
   );
 }
 
-function WorkingPaperCard({ paper, index, language }: { paper: WorkingPaper; index: number; language: string }) {
+function WorkingPaperRow({ paper, language }: { paper: WorkingPaper; language: string }) {
   const t = (en: string, zh: string) => (language === 'en' ? en : zh);
-  const authorParts = paper.authors.split('Shichao Han');
 
   return (
-    <div
-      className="paper-card p-5 transition-all duration-300"
-      style={{
-        backgroundColor: '#FFFFFF',
-        border: '1px solid #E5E5E5',
-        borderRadius: '4px',
-        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-2px)';
-        e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 2px 12px rgba(0, 0, 0, 0.06)';
-      }}
-    >
-      <div className="flex items-start justify-between gap-3">
+    <div style={{ marginBottom: '20px' }}>
+      <p style={{ margin: 0, lineHeight: 1.6 }}>
         <span
           style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: '14px',
+            fontFamily: "'Cormorant Garamond', 'Noto Serif SC', serif",
+            fontSize: '16px',
             fontWeight: 600,
-            color: '#3B7A5B',
+            color: '#2C3E50',
           }}
         >
-          [{index + 1}]
+          {t(paper.title, paper.titleZh)}
         </span>
         <span
-          className="shrink-0"
           style={{
+            display: 'inline-block',
+            marginLeft: '10px',
             fontFamily: "'Source Serif 4', serif",
             fontSize: '12px',
-            padding: '2px 10px',
-            borderRadius: '4px',
-            backgroundColor: paper.statusType === 'under-review' ? '#3B7A5B' : '#F5F0EB',
-            color: paper.statusType === 'under-review' ? '#FFFFFF' : '#9B9B9B',
-            border: paper.statusType === 'under-review' ? 'none' : '1px solid #E5E5E5',
+            padding: '1px 8px',
+            borderRadius: '3px',
+            verticalAlign: 'middle',
+            backgroundColor: paper.statusType === 'under-review' ? '#3B7A5B' : '#F0F0F0',
+            color: paper.statusType === 'under-review' ? '#FFFFFF' : '#888888',
           }}
         >
           {t(paper.status, paper.statusZh)}
         </span>
-      </div>
-      <h3
-        className="mt-2"
-        style={{
-          fontFamily: "'Cormorant Garamond', 'Noto Serif SC', serif",
-          fontSize: '18px',
-          fontWeight: 600,
-          color: '#2C3E50',
-          lineHeight: 1.4,
-        }}
-      >
-        {t(paper.title, paper.titleZh)}
-      </h3>
+      </p>
       <p
-        className="mt-2"
         style={{
+          margin: '2px 0 0',
           fontFamily: "'Source Serif 4', 'Noto Serif SC', serif",
           fontSize: '14px',
           color: '#5A5A5A',
           lineHeight: 1.5,
         }}
       >
-        {authorParts.length > 1 ? (
-          <>
-            {authorParts[0]}
-            <strong style={{ fontWeight: 600 }}>Shichao Han</strong>
-            {authorParts[1]}
-          </>
-        ) : (
-          paper.authors
-        )}
+        <AuthorList authors={paper.authors} />
       </p>
       <p
-        className="mt-1.5"
         style={{
+          margin: '1px 0 0',
           fontFamily: "'Source Serif 4', 'Noto Serif SC', serif",
           fontSize: '14px',
           color: '#9B9B9B',
@@ -297,9 +238,9 @@ export default function ResearchSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const pubLabelRef = useRef<HTMLParagraphElement>(null);
-  const pubGridRef = useRef<HTMLDivElement>(null);
+  const pubListRef = useRef<HTMLDivElement>(null);
   const wpLabelRef = useRef<HTMLParagraphElement>(null);
-  const wpGridRef = useRef<HTMLDivElement>(null);
+  const wpListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -325,9 +266,9 @@ export default function ResearchSection() {
         '-=0.4'
       )
       .fromTo(
-        pubGridRef.current?.children || [],
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.12 },
+        pubListRef.current?.children || [],
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.1 },
         '-=0.3'
       )
       .fromTo(
@@ -337,15 +278,13 @@ export default function ResearchSection() {
         '-=0.2'
       )
       .fromTo(
-        wpGridRef.current?.children || [],
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.12 },
+        wpListRef.current?.children || [],
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.1 },
         '-=0.3'
       );
 
-    return () => {
-      tl.kill();
-    };
+    return () => { tl.kill(); };
   }, []);
 
   return (
@@ -355,8 +294,7 @@ export default function ResearchSection() {
       className="px-6 md:px-8"
       style={{ paddingTop: '64px', paddingBottom: '64px' }}
     >
-      <div className="max-w-[1100px] mx-auto">
-        {/* Section Heading */}
+      <div className="max-w-[800px] mx-auto">
         <h2
           ref={headingRef}
           style={{
@@ -370,7 +308,6 @@ export default function ResearchSection() {
           {t('Research', '研究')}
         </h2>
 
-        {/* Published Papers Label */}
         <p
           ref={pubLabelRef}
           style={{
@@ -386,17 +323,12 @@ export default function ResearchSection() {
           {t('Published Papers', '已发表论文')}
         </p>
 
-        {/* Published Papers Grid */}
-        <div
-          ref={pubGridRef}
-          className="grid grid-cols-1 md:grid-cols-2 gap-4"
-        >
+        <div ref={pubListRef}>
           {publishedPapers.map((paper, i) => (
-            <PaperCard key={i} paper={paper} index={i} language={language} />
+            <PaperRow key={i} paper={paper} language={language} />
           ))}
         </div>
 
-        {/* Working Papers Label */}
         <p
           ref={wpLabelRef}
           style={{
@@ -406,20 +338,16 @@ export default function ResearchSection() {
             color: '#3B7A5B',
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
-            marginTop: '48px',
+            marginTop: '40px',
             marginBottom: '16px',
           }}
         >
           {t('Working Papers', '工作论文')}
         </p>
 
-        {/* Working Papers Grid */}
-        <div
-          ref={wpGridRef}
-          className="grid grid-cols-1 md:grid-cols-2 gap-4"
-        >
+        <div ref={wpListRef}>
           {workingPapers.map((paper, i) => (
-            <WorkingPaperCard key={i} paper={paper} index={i} language={language} />
+            <WorkingPaperRow key={i} paper={paper} language={language} />
           ))}
         </div>
       </div>
