@@ -7,8 +7,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const presentations = [
   {
-    en: 'Guest Lecturer, "AI for Business Decisions", Mitch Daniels School of Business, Purdue University',
-    zh: '客座讲师，"AI for Business Decisions"，普渡大学米切尔·丹尼尔斯商学院',
+    en: 'Guest Lecturer, "AI for Business Decisions", Purdue University, Mitch Daniels School of Business',
+    zh: '客座讲师，"AI for Business Decisions"，普渡大学，米切尔·丹尼尔斯商学院',
     location: 'West Lafayette, IN',
     date: 'February 2026',
     dateZh: '2026年2月',
