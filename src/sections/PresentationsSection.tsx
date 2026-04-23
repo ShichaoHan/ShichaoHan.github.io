@@ -7,6 +7,20 @@ gsap.registerPlugin(ScrollTrigger);
 
 const presentations = [
   {
+    en: 'Guest Lecturer, "AI for Business Decisions", Mitch Daniels School of Business, Purdue University',
+    zh: '客座讲师，"AI for Business Decisions"，普渡大学米切尔·丹尼尔斯商学院',
+    location: 'West Lafayette, IN',
+    date: 'February 2026',
+    dateZh: '2026年2月',
+  },
+  {
+    en: 'Guest Lecturer, The University of Hong Kong, Business School',
+    zh: '客座讲师，香港大学商学院',
+    location: 'Hong Kong',
+    date: '2021 – 2026',
+    dateZh: '2021 – 2026',
+  },
+  {
     en: 'Conference on Digital Experimentation (CODE) @ MIT',
     zh: 'MIT数字实验会议 (CODE)',
     location: 'Boston, MA',
@@ -14,30 +28,16 @@ const presentations = [
     dateZh: '2021年12月 – 2025年',
   },
   {
-    en: 'Guest Lecturer, "AI for Business Decisions", Mitch Daniels School of Business, Purdue University',
-    zh: '客座讲师，"AI for Business Decisions"，普渡大学米切尔·丹尼尔斯商学院',
-    location: '',
-    date: 'February 2026',
-    dateZh: '2026年2月',
-  },
-  {
-    en: 'The University of Hong Kong, Business School',
-    zh: '香港大学商学院',
-    location: 'Guest Lecturer',
-    date: '2021 – 2026',
-    dateZh: '2021 – 2026',
-  },
-  {
     en: 'INFORMS Annual Meeting',
     zh: 'INFORMS年会',
-    location: '',
-    date: '2025',
-    dateZh: '2025',
+    location: 'Atlanta, GA',
+    date: 'October 2025',
+    dateZh: '2025年10月',
   },
   {
-    en: 'The Hong Kong University of Science and Technology, School of Engineering',
-    zh: '香港科技大学工学院',
-    location: '',
+    en: 'Guest Lecturer, The Hong Kong University of Science and Technology, School of Engineering',
+    zh: '客座讲师，香港科技大学工学院',
+    location: 'Hong Kong',
     date: 'April 2025',
     dateZh: '2025年4月',
   },
@@ -114,33 +114,28 @@ export default function PresentationsSection() {
 
         <div ref={listRef}>
           {presentations.map((item, i) => (
-            <div key={i} style={{ marginBottom: '16px' }}>
-              <p style={{ margin: 0 }}>
-                <span
-                  style={{
-                    fontFamily: "'Cormorant Garamond', 'Noto Serif SC', serif",
-                    fontSize: '16px',
-                    fontWeight: 600,
-                    color: '#2C3E50',
-                    lineHeight: 1.5,
-                  }}
-                >
-                  {language === 'en' ? item.en : item.zh}
-                </span>
-              </p>
-              <p
+            <p key={i} style={{ margin: '0 0 12px', lineHeight: 1.6 }}>
+              <span
                 style={{
-                  margin: '2px 0 0',
-                  fontFamily: "'Source Serif 4', 'Noto Serif SC', serif",
-                  fontSize: '14px',
-                  color: '#9B9B9B',
-                  lineHeight: 1.5,
+                  fontFamily: "'Cormorant Garamond', 'Noto Serif SC', serif",
+                  fontSize: '16px',
+                  fontWeight: 600,
+                  color: '#2C3E50',
                 }}
               >
-                {item.location && <>{item.location} · </>}
-                {language === 'en' ? item.date : item.dateZh}
-              </p>
-            </div>
+                {language === 'en' ? item.en : item.zh}
+              </span>
+              <span
+                style={{
+                  fontFamily: "'Source Serif 4', serif",
+                  fontSize: '14px',
+                  color: '#9B9B9B',
+                  marginLeft: '6px',
+                }}
+              >
+                ({item.location ? `${item.location} · ` : ''}{language === 'en' ? item.date : item.dateZh})
+              </span>
+            </p>
           ))}
         </div>
       </div>
