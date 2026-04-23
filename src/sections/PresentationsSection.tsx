@@ -14,9 +14,16 @@ const presentations = [
     dateZh: '2021年12月 – 2025年',
   },
   {
+    en: 'Guest Lecturer, "AI for Business Decisions", Mitch Daniels School of Business, Purdue University',
+    zh: '客座讲师，"AI for Business Decisions"，普渡大学米切尔·丹尼尔斯商学院',
+    location: '',
+    date: 'February 2026',
+    dateZh: '2026年2月',
+  },
+  {
     en: 'The University of Hong Kong, Business School',
     zh: '香港大学商学院',
-    location: 'Guest Lecturer / 客座讲师',
+    location: 'Guest Lecturer',
     date: '2021 – 2026',
     dateZh: '2021 – 2026',
   },
@@ -26,6 +33,13 @@ const presentations = [
     location: '',
     date: '2025',
     dateZh: '2025',
+  },
+  {
+    en: 'The Hong Kong University of Science and Technology, School of Engineering',
+    zh: '香港科技大学工学院',
+    location: '',
+    date: 'April 2025',
+    dateZh: '2025年4月',
   },
   {
     en: 'Conference on Information and Knowledge Management (CIKM)',
@@ -40,13 +54,6 @@ const presentations = [
     location: 'New Haven, CT',
     date: 'July 2024',
     dateZh: '2024年7月',
-  },
-  {
-    en: 'The Hong Kong University of Science and Technology, School of Engineering',
-    zh: '香港科技大学工学院',
-    location: '',
-    date: 'April 2025',
-    dateZh: '2025年4月',
   },
 ];
 
@@ -107,29 +114,27 @@ export default function PresentationsSection() {
 
         <div ref={listRef}>
           {presentations.map((item, i) => (
-            <div
-              key={i}
-              className="py-3"
-              style={{
-                borderBottom: '1px solid #E5E5E5',
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: "'Cormorant Garamond', 'Noto Serif SC', serif",
-                  fontSize: '16px',
-                  fontWeight: 600,
-                  color: '#2C3E50',
-                }}
-              >
-                {language === 'en' ? item.en : item.zh}
+            <div key={i} style={{ marginBottom: '16px' }}>
+              <p style={{ margin: 0 }}>
+                <span
+                  style={{
+                    fontFamily: "'Cormorant Garamond', 'Noto Serif SC', serif",
+                    fontSize: '16px',
+                    fontWeight: 600,
+                    color: '#2C3E50',
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {language === 'en' ? item.en : item.zh}
+                </span>
               </p>
               <p
-                className="mt-1"
                 style={{
+                  margin: '2px 0 0',
                   fontFamily: "'Source Serif 4', 'Noto Serif SC', serif",
                   fontSize: '14px',
                   color: '#9B9B9B',
+                  lineHeight: 1.5,
                 }}
               >
                 {item.location && <>{item.location} · </>}
